@@ -1,0 +1,568 @@
+CREATE DATABASE REG;
+USE REG;
+CREATE TABLE employee
+(EMPNO INTEGER,
+ENAME VARCHAR(20),
+JOB VARCHAR(20),
+HIREDATE VARCHAR(20),
+MGR VARCHAR(20),
+SAL DOUBLE,
+COMM DOUBLE,
+DEPTNO INTEGER);
+SELECT * FROM employee;
+INSERT INTO employee VALUES(7369, 'SMITH', 'CLERK', '17-Dec-2020', 7902,800,NULL, 20);
+INSERT INTO employee VALUES(7499,'ALLEN','CLERK','17-DEC-80','7902',800,NULL,20);
+INSERT INTO employee VALUES(7521,'WARD','SALESMAN','22-FEB-81',7698,1600,300,30);
+INSERT INTO employee VALUES(7566,'JONES','MANAGER','02-APR-81',7839,2975,NULL,20);
+INSERT INTO employee VALUES(7654,'MARTIN','SALESMAN','28-SEPT-81',7698,1250,1400,30);
+INSERT INTO employee VALUES(7698,'BLAKE','MANAGER','01-MAY-81',7839,2850,NULL,30);
+
+
+
+#1.Create the above table.
+SELECT * FROM employee;
++-------+--------+----------+-------------+------+------+------+--------+
+| EMPNO | ENAME  | JOB      | HIREDATE    | MGR  | SAL  | COMM | DEPTNO |
++-------+--------+----------+-------------+------+------+------+--------+
+|  7369 | SMITH  | CLERK    | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7499 | ALLEN  | CLERK    | 17-DEC-80   | 7902 |  800 | NULL |     20 |
+|  7521 | WARD   | SALESMAN | 22-FEB-81   | 7698 | 1600 |  300 |     30 |
+|  7566 | JONES  | MANAGER  | 02-APR-81   | 7839 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN | 28-SEPT-81  | 7698 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7369 | SMITH  | CLERK    | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7499 | ALLEN  | CLERK    | 17-DEC-80   | 7902 |  800 | NULL |     20 |
+|  7521 | WARD   | SALESMAN | 22-FEB-81   | 7698 | 1600 |  300 |     30 |
+|  7566 | JONES  | MANAGER  | 02-APR-81   | 7839 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN | 28-SEPT-81  | 7698 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7369 | SMITH  | CLERK    | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7499 | ALLEN  | CLERK    | 17-DEC-80   | 7902 |  800 | NULL |     20 |
+|  7521 | WARD   | SALESMAN | 22-FEB-81   | 7698 | 1600 |  300 |     30 |
+|  7566 | JONES  | MANAGER  | 02-APR-81   | 7839 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN | 28-SEPT-81  | 7698 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
++-------+--------+----------+-------------+------+------+------+--------+
+
+
+#2.Select the employees in department 30.
+SELECT Ename FROM EMPLOYEE where deptno=30;
++--------+
+| Ename  |
++--------+
+| WARD   |
+| MARTIN |
+| BLAKE  |
+| WARD   |
+| MARTIN |
+| BLAKE  |
+| BLAKE  |
+| WARD   |
+| MARTIN |
+| BLAKE  |
+| BLAKE  |
++--------+
+
+
+
+
+#3.List the names, numbers and departments of all clerks.
+ SELECT Ename,empno,deptno FROM EMPLOYEE where job='clerk';
++-------+-------+--------+
+| Ename | empno | deptno |
++-------+-------+--------+
+| SMITH |  7369 |     20 |
+| ALLEN |  7499 |     20 |
+| SMITH |  7369 |     20 |
+| ALLEN |  7499 |     20 |
+| SMITH |  7369 |     20 |
+| ALLEN |  7499 |     20 |
++-------+-------+--------+
+
+
+
+
+
+SELECT Ename,deptno FROM EMPLOYEE where deptno>20;
++--------+--------+
+| Ename  | deptno |
++--------+--------+
+| WARD   |     30 |
+| MARTIN |     30 |
+| BLAKE  |     30 |
+| WARD   |     30 |
+| MARTIN |     30 |
+| BLAKE  |     30 |
+| BLAKE  |     30 |
+| WARD   |     30 |
+| MARTIN |     30 |
+| BLAKE  |     30 |
+| BLAKE  |     30 |
++--------+--------+
+
+
+
+SELECT Ename FROM EMPLOYEE where comm>sal;
++--------+
+| Ename  |
++--------+
+| MARTIN |
+| MARTIN |
+| MARTIN |
++--------+
+
+ select ename from employee where comm>0.6*sal;
++--------+
+| ename  |
++--------+
+| MARTIN |
+| MARTIN |
+| MARTIN |
++--------+
+
+
+ SELECT Ename FROM EMPLOYEE where deptno=20 and sal>2000;
++-------+
+| Ename |
++-------+
+| JONES |
+| JONES |
+| JONES |
++-------+
+
+
+ SELECT Ename FROM EMPLOYEE where job='salesman' and sal>1500 and deptno='30';
++-------+
+| Ename |
++-------+
+| WARD  |
+| WARD  |
+| WARD  |
++-------+
+
+ SELECT Ename FROM EMPLOYEE where job='salesman' or job='president' ;
++--------+
+| Ename  |
++--------+
+| WARD   |
+| MARTIN |
+| WARD   |
+| MARTIN |
+| WARD   |
+| MARTIN |
++--------+
+
+
+ SELECT Ename FROM EMPLOYEE where job='manager' and deptno!=30 ;
++-------+
+| Ename |
++-------+
+| JONES |
+| JONES |
+| JONES |
++-------+
+
+
+ SELECT Ename FROM EMPLOYEE where job='manager' and job='clerk' and deptno=10;
+Empty set (0.00 sec)
+
+
+ SELECT Ename FROM EMPLOYEE where (job='manager') or (job='clerk' and deptno=20);
++-------+
+| Ename |
++-------+
+| SMITH |
+| ALLEN |
+| JONES |
+| BLAKE |
+| SMITH |
+| ALLEN |
+| JONES |
+| BLAKE |
+| BLAKE |
+| SMITH |
+| ALLEN |
+| JONES |
+| BLAKE |
+| BLAKE |
++-------+
+
+
+
+SELECT * FROM EMPLOYEE where (job='manager' and deptno=10) or (job='clerk' and deptno=20) or (JOB <> 'MANAGER' AND JOB <> 'CLERK' AND SAL >= 2000);
++-------+-------+-------+-------------+------+------+------+--------+
+| EMPNO | ENAME | JOB   | HIREDATE    | MGR  | SAL  | COMM | DEPTNO |
++-------+-------+-------+-------------+------+------+------+--------+
+|  7369 | SMITH | CLERK | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7499 | ALLEN | CLERK | 17-DEC-80   | 7902 |  800 | NULL |     20 |
+|  7369 | SMITH | CLERK | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7499 | ALLEN | CLERK | 17-DEC-80   | 7902 |  800 | NULL |     20 |
+|  7369 | SMITH | CLERK | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7499 | ALLEN | CLERK | 17-DEC-80   | 7902 |  800 | NULL |     20 |
++-------+-------+-------+-------------+------+------+------+--------+
+
+
+SELECT ename FROM EMPLOYEE where (JOB !='MANAGER' AND JOB != 'CLERK' AND deptno=20);
+Empty set (0.00 sec)
+
+
+ SELECT ename FROM EMPLOYEE where sal<1400 and sal>1200;
++--------+
+| ename  |
++--------+
+| MARTIN |
+| MARTIN |
+| MARTIN |
++--------+
+
+
+ SELECT ename FROM EMPLOYEE where job='clerk' or job='analyst' or job='salesman';
++--------+
+| ename  |
++--------+
+| SMITH  |
+| ALLEN  |
+| WARD   |
+| MARTIN |
+| SMITH  |
+| ALLEN  |
+| WARD   |
+| MARTIN |
+| SMITH  |
+| ALLEN  |
+| WARD   |
+| MARTIN |
++--------+
+
+
+
+
+ SELECT ename FROM EMPLOYEE where (job!='clerk' and job!='SALESMAN' and job!='analyst');
++-------+
+| ename |
++-------+
+| JONES |
+| BLAKE |
+| JONES |
+| BLAKE |
+| BLAKE |
+| JONES |
+| BLAKE |
+| BLAKE |
++-------+
+
+
+ SELECT ename FROM EMPLOYEE where COMM IS NULL;
++-------+
+| ename |
++-------+
+| SMITH |
+| ALLEN |
+| JONES |
+| BLAKE |
+| SMITH |
+| ALLEN |
+| JONES |
+| BLAKE |
+| BLAKE |
+| SMITH |
+| ALLEN |
+| JONES |
+| BLAKE |
+| BLAKE |
++-------+
+
+
+ SELECT JOB FROM EMPLOYEE where COMM >0;
++----------+
+| JOB      |
++----------+
+| SALESMAN |
+| SALESMAN |
+| SALESMAN |
+| SALESMAN |
+| SALESMAN |
+| SALESMAN |
++----------+
+
+ SELECT ENAME FROM EMPLOYEE where COMM < 100 OR COMM IS NULL;
++-------+
+| ENAME |
++-------+
+| SMITH |
+| ALLEN |
+| JONES |
+| BLAKE |
+| SMITH |
+| ALLEN |
+| JONES |
+| BLAKE |
+| BLAKE |
+| SMITH |
+| ALLEN |
+| JONES |
+| BLAKE |
+| BLAKE |
++-------+
+
+
+
+SELECT SUM(SAL + 250) FROM EMPLOYEE where COMM IS NULL;
++----------------+
+| SUM(SAL + 250) |
++----------------+
+|          31475 |
++----------------+
+
+
+ SELECT Ename FROM EMPLOYEE where sal>2000;
++-------+
+| Ename |
++-------+
+| JONES |
+| BLAKE |
+| JONES |
+| BLAKE |
+| BLAKE |
+| JONES |
+| BLAKE |
+| BLAKE |
++-------+
+
+
+
+ SELECT Ename FROM EMPLOYEE where ename like 'M%' or ename like '%m';
++--------+
+| Ename  |
++--------+
+| MARTIN |
+| MARTIN |
+| MARTIN |
++--------+
+
+
+
+
+ SELECT Ename FROM EMPLOYEE where ename like '%M%';
++--------+
+| Ename  |
++--------+
+| SMITH  |
+| MARTIN |
+| SMITH  |
+| MARTIN |
+| SMITH  |
+| MARTIN |
++--------+
+
+
+
+
+SELECT Ename FROM EMPLOYEE where length(ename)<=15 and ename like '__r%';
++--------+
+| Ename  |
++--------+
+| WARD   |
+| MARTIN |
+| WARD   |
+| MARTIN |
+| WARD   |
+| MARTIN |
++--------+
+
+
+
+ SELECT Ename FROM EMPLOYEE where hiredate like '%FEB%';
++-------+
+| Ename |
++-------+
+| WARD  |
+| WARD  |
+| WARD  |
++-------+
+
+27.
+
+28 SELECT * FROM employee WHERE (DATEDIFF(CURDATE(), HIREDATE) > 730);
+Empty set, 20 warnings (0.00 sec)
+
+
+29 SELECT Ename FROM EMPLOYEE where hiredate like '%2003%';
+Empty set (0.00 sec)
+
+
+ SELECT CONCAT(ename,' ',joB) from employeE;
++-----------------------+
+| CONCAT(ename,' ',joB) |
++-----------------------+
+| SMITH CLERK           |
+| ALLEN CLERK           |
+| WARD SALESMAN         |
+| JONES MANAGER         |
+| MARTIN SALESMAN       |
+| BLAKE MANAGER         |
+| SMITH CLERK           |
+| ALLEN CLERK           |
+| WARD SALESMAN         |
+| JONES MANAGER         |
+| MARTIN SALESMAN       |
+| BLAKE MANAGER         |
+| BLAKE MANAGER         |
+| SMITH CLERK           |
+| ALLEN CLERK           |
+| WARD SALESMAN         |
+| JONES MANAGER         |
+| MARTIN SALESMAN       |
+| BLAKE MANAGER         |
+| BLAKE MANAGER         |
++-----------------------+
+
+
+
+
+
+ SELECT CONCAT(Ename ,space(15)) from EMPLOYEE;
++--------------------------+
+| CONCAT(Ename ,space(15)) |
++--------------------------+
+| SMITH                    |
+| ALLEN                    |
+| WARD                     |
+| JONES                    |
+| MARTIN                   |
+| BLAKE                    |
+| SMITH                    |
+| ALLEN                    |
+| WARD                     |
+| JONES                    |
+| MARTIN                   |
+| BLAKE                    |
+| BLAKE                    |
+| SMITH                    |
+| ALLEN                    |
+| WARD                     |
+| JONES                    |
+| MARTIN                   |
+| BLAKE                    |
+| BLAKE                    |
++--------------------------+
+ 
+
+
+
+
+
+
+SELECT rpad('ename',15,'*') FROM employee;
++----------------------+
+| rpad('ename',15,'*') |
++----------------------+
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
+| ename**********      |
++----------------------+
+
+
+
+
+
+SELECT * FROM employee WHERE ename NOT LIKE 'A%';
++-------+--------+----------+-------------+------+------+------+--------+
+| EMPNO | ENAME  | JOB      | HIREDATE    | MGR  | SAL  | COMM | DEPTNO |
++-------+--------+----------+-------------+------+------+------+--------+
+|  7369 | SMITH  | CLERK    | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7521 | WARD   | SALESMAN | 22-FEB-81   | 7698 | 1600 |  300 |     30 |
+|  7566 | JONES  | MANAGER  | 02-APR-81   | 7839 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN | 28-SEPT-81  | 7698 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7369 | SMITH  | CLERK    | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7521 | WARD   | SALESMAN | 22-FEB-81   | 7698 | 1600 |  300 |     30 |
+|  7566 | JONES  | MANAGER  | 02-APR-81   | 7839 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN | 28-SEPT-81  | 7698 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7369 | SMITH  | CLERK    | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7521 | WARD   | SALESMAN | 22-FEB-81   | 7698 | 1600 |  300 |     30 |
+|  7566 | JONES  | MANAGER  | 02-APR-81   | 7839 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN | 28-SEPT-81  | 7698 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
++-------+--------+----------+-------------+------+------+------+--------+
+
+
+
+
+
+ SELECT * FROM employee WHERE ename NOT LIKE 'R%';
++-------+--------+----------+-------------+------+------+------+--------+
+| EMPNO | ENAME  | JOB      | HIREDATE    | MGR  | SAL  | COMM | DEPTNO |
++-------+--------+----------+-------------+------+------+------+--------+
+|  7369 | SMITH  | CLERK    | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7499 | ALLEN  | CLERK    | 17-DEC-80   | 7902 |  800 | NULL |     20 |
+|  7521 | WARD   | SALESMAN | 22-FEB-81   | 7698 | 1600 |  300 |     30 |
+|  7566 | JONES  | MANAGER  | 02-APR-81   | 7839 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN | 28-SEPT-81  | 7698 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7369 | SMITH  | CLERK    | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7499 | ALLEN  | CLERK    | 17-DEC-80   | 7902 |  800 | NULL |     20 |
+|  7521 | WARD   | SALESMAN | 22-FEB-81   | 7698 | 1600 |  300 |     30 |
+|  7566 | JONES  | MANAGER  | 02-APR-81   | 7839 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN | 28-SEPT-81  | 7698 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7369 | SMITH  | CLERK    | 17-Dec-2020 | 7902 |  800 | NULL |     20 |
+|  7499 | ALLEN  | CLERK    | 17-DEC-80   | 7902 |  800 | NULL |     20 |
+|  7521 | WARD   | SALESMAN | 22-FEB-81   | 7698 | 1600 |  300 |     30 |
+|  7566 | JONES  | MANAGER  | 02-APR-81   | 7839 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN | 28-SEPT-81  | 7698 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
+|  7698 | BLAKE  | MANAGER  | 01-MAY-81   | 7839 | 2850 | NULL |     30 |
++-------+--------+----------+-------------+------+------+------+--------+
+
+
+
+
+42 SELECT FLOOR (DATEDIFF(CURDATE(), HIREDATE)/30) FROM employee;
++------------------------------------------+
+| FLOOR (DATEDIFF(CURDATE(), HIREDATE)/30) |
++------------------------------------------+
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
+|                                     NULL |
++------------------------------------------+
