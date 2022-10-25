@@ -1,0 +1,118 @@
+-JAVA
+ IF ELSE  CONDITION
+int percentage= 63;
+
+          if(percentage>=90) {
+              System.out.println("O Grade");
+          }else if(percentage>=80 && percentage< 90) {
+              System.out.println("E Grade");
+          }else if(percentage>=70 && percentage< 80) {
+              System.out.println("A Grade");
+          }else if(percentage>=60 && percentage< 70) {
+              System.out.println("B Grade");
+          }else if(percentage>=50 && percentage< 60) {
+              System.out.println("C Grade");
+          }else if(percentage>=40 && percentage< 50) {
+              System.out.println("D Grade");
+          }else {
+              System.out.println("F Grade");
+          }
+-----------------------------------------------------------------
+ WHILE CONDITION
+
+public class WhileCondition {
+ 
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+        int i=  1;
+        while(i<10) {
+            System.out.println("Hello ::"+i);
+
+            i++;
+        }
+
+
+        System.out.println("Rest of the code");
+ 
+    }
+ 
+}
+-----------------------------------------------------------------------------------------------------------
+
+DO WHILE CONDITION
+
+
+public class WhileCondition {
+ 
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+        int i=  100;
+        do {
+            System.out.println("Hello ::"+i);            
+            i++;
+        }
+        while(i<10);        
+        System.out.println("Rest of the code");
+ 
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------
+SWITCH CASE CONDITION
+
+public class SwitchCase {
+ 
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+        int grade=12;
+
+        switch(grade) {
+        case 1: System.out.println("Garade O");
+        break;
+        case 2:System.out.println("Garade E");
+        break;
+        case 3:System.out.println("Garade A");
+        break;
+        case 4:System.out.println("Garade B");
+        break;
+        case 5:System.out.println("Garade C");
+        break;
+        case 6:System.out.println("Garade D");
+        break;
+        //Default statement
+        default: System.out.println("Grade F");
+
+        }
+ 
+    }
+ 
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public class ArrayProblem {
+ 
+    public static void main(String[] args) {
+        int arr[] = { 1, 2, 3, 4, 3, 6, 7, 4, 9 };
+ 
+        int counter = 0;
+ 
+        for (int i = 0; i < arr.length; i++) {
+ 
+            for (int j = 0; j < arr.length; j++) {
+ 
+                if (arr[i] == arr[j]) {
+                    counter++;
+                }
+            }
+            if (counter > 1) {
+                System.out.print(arr[i] + " ");
+            }
+            counter = 0;
+        }
+ 
+    }
+ 
+}
+------------------------------------------------------------------------------------------------------------------------------------------------

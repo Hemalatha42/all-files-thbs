@@ -1,0 +1,30 @@
+Normalization
+
+Normalization is the process of organizing the data in the database.
+
+why is this required? 
+Normalization is used to minimize the redundancy from a relation or set of relations. It is
+also used to eliminate the undesirable characteristics like Insertion, Update and Deletion
+Anomalies.
+
+Types of Normal Forms
+
+There are the four types of normal forms:
+1st Normal Form (1NF)
+2nd Normal Form (2NF)
+3rd Normal Form (2NF)
+BCNF
+
+1st Normal Form (1NF)
+A relation is in 1NF if it contains an atomic value.
+
+2nd Normal Form (2NF)
+2NF A relation will be in 2NF if it is in 1NF and all non-key attributes are fully functional
+dependent on the primary key.
+
+3rd Normal Form (2NF)
+3NF A relation will be in 3NF if it is in 2NF and no transition dependency exists.
+
+BCNF
+4NF A relation will be in 4NF if it is in Boyce Codd normal form and has no multi-valued
+dependency
