@@ -1,0 +1,95 @@
+2  * Don't change this code
+    3  */
+    4 package com.test.unoadm.util;
+    5 import java.io.FileInputStream;
+    6 import java.io.FileNotFoundException;
+    7 import java.io.IOException;
+    8 import java.sql.Connection;
+    9 import java.sql.DriverManager;
+   10 import java.sql.SQLException;
+   11 import java.util.Properties;
+   12 
+   13 import com.test.unoadm.exception.StudentAdmissionException;
+   14 
+   15 
+   16 public final class DBConnectionManager {
+   17 
+   18 	public static final String PROPERTY_FILE = "database.properties";
+   19 	public static final String DRIVER = "DB_DRIVER_CLASS";
+   20 	public static final String URL = "DB_URL";
+   21 	public static final String USER_NAME = "DB_USERNAME";
+   22 	public static final String PASSWORD = "DB_PASSWORD";
+   23 
+   24 	private static Connection connection = null;
+   25 	private static Properties props = null;
+   26     private static DBConnectionManager instance = null;
+   27 	/**
+   28 	 * @throws StudentAdmissionException
+   29 	 */
+   30 	private DBConnectionManager() throws StudentAdmissionException {
+   31 		loadProperties();
+   32 		try {
+   33 			Class.forName(props.getProperty(DRIVER));
+   34 			connection = DriverManager.getConnection(props.getProperty(URL), props.getProperty(USER_NAME), 
+   35 					props.getProperty(PASSWORD));
+   36 		} catch (ClassNotFoundException ex) {	 	 
+   37 		    ex.printStackTrace();
+   38 			//throw new StudentAdmissionException("Could not find Driver class ", ex.getCause());
+   39 		} catch (SQLException e) {
+   40 		    e.printStackTrace();
+   41 			//throw new StudentAdmissionException("Database Connection Creation Failed", e.getCause());
+   42 		}
+   43 		catch(Exception e)
+   44 		{
+   45 		    e.printStackTrace();
+   46 		    //throw new StudentAdmissionException("Database Connection Creation Failed", e.getCause());
+   47 		}
+   48 	}
+   49 
+   50 	/**
+   51 	 * @return Connection
+   52 	 */
+   53 	public Connection getConnection() {
+   54 		return connection;
+   55 	}
+   56 
+   57 	/**
+   58 	 * @return DBConnectionManager
+   59 	 * @throws StudentAdmissionException
+   60 	 */
+   61 	public static DBConnectionManager getInstance() throws StudentAdmissionException {
+   62 		
+   63 		// Code here
+   64 		
+   65 		instance = new DBConnectionManager();
+   66 		
+   67 		return instance;
+   68 	}
+   69 
+   70 	/**
+   71 	 * @throws StudentAdmissionException
+   72 	 */
+   73 	private void loadProperties() throws StudentAdmissionException {
+   74 		FileInputStream inputStream = null;
+   75 		try {
+   76 			inputStream = new FileInputStream(PROPERTY_FILE);
+   77 			props = new Properties();
+   78 			props.load(inputStream);
+   79 		} catch (FileNotFoundException e) {	 
+   80 		    e.printStackTrace();
+   81 			//throw new StudentAdmissionException("Database Property File Not Found", e.getCause());
+   82 		} catch (IOException e) {
+   83 		    e.printStackTrace();
+   84 			//throw new StudentAdmissionException("Exception during property file I/O", e.getCause());
+   85 		} finally {
+   86 			if (inputStream != null) {
+   87 				try {
+   88 					inputStream.close();
+   89 				} catch (IOException e) {
+   90 				    e.printStackTrace();
+   91 					//throw new StudentAdmissionException("Exception during property file I/O", e.getCause());
+   92 				}
+   93 			}
+   94 		}
+   95 	}
+   96 }
